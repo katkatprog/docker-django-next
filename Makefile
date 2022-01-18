@@ -8,12 +8,16 @@ django-shell:
 	docker-compose exec backend sh -c "cd $(BACK_PROJECT_NAME) && python manage.py shell_plus"
 
 # front_node_modulesボリュームにnodeのモジュールをインストールする。
-next-install:
+npm-install:
 	docker-compose run --rm frontend sh -c "cd $(FRONT_PROJECT_NAME) && npm install"
+
+# back_py_modulesボリュームにpythonモジュールをインストールする。
+pipenv-install:
+	docker-compose run --rm backend sh -c "cd $(BACK_PROJECT_NAME) && pipenv install"
 
 build:
 	docker-compose build --no-cache
-	@make next-install
+	@make npm-install
 
 db-login:
 	docker-compose exec db sh -c 'mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD}'

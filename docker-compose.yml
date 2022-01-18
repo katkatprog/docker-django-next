@@ -27,6 +27,7 @@ services:
       context: ./backend
       args:
         WORK_DIR: $WORK_DIR
+        BACK_PROJECT_NAME: $BACK_PROJECT_NAME
     environment:
       # BACK_SECRET_KEY: $BACK_SECRET_KEY
       DB_PORT: $DB_PORT
@@ -35,8 +36,11 @@ services:
       DB_PASS: $DB_PASS
       DB_ROOT_PASS: $DB_ROOT_PASS
       FRONT_PORT: $FRONT_PORT
+      # MODULE_PASS: ${docker-compose exec backend sh -c "cd $BACK_PROJECT_NAME && pipenv --venv"}
     volumes:
       - ./backend:$WORK_DIR
+      # - back_python_modules:
+    # command: sh -c "cd $BACK_PROJECT_NAME && pipenv shell && python manage.py runserver 0:8000"
     command: sh -c "cd $BACK_PROJECT_NAME && python manage.py runserver 0:8000"
     ports:
       - "$BACK_PORT:8000"
