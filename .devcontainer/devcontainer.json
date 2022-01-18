@@ -1,0 +1,18 @@
+{
+    "name": "backend",
+    "context": ".",
+
+    "dockerComposeFile": [
+        "../docker-compose.yml",
+    ],
+    "service": "backend",
+    "shutdownAction": "none",
+    "workspaceFolder": "/root/src",
+
+    "extensions": [
+        "ms-python.python",
+        "njpwerner.autodocstring",
+        "ms-azuretools.vscode-docker",
+        "visualstudioexptteam.vscodeintellicode"
+    ]
+}
