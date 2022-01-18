@@ -6,8 +6,7 @@ ENV DOCKERIZE_VERSION v0.6.1
 
 COPY . .
 RUN pip3 install pipenv
-RUN cd ${BACK_PROJECT_NAME}
-RUN pipenv install -r requirements.txt
+RUN cd ${BACK_PROJECT_NAME} && pipenv install -r ./requirements.txt
 
 RUN apt-get update && apt-get install -y wget
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \

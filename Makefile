@@ -1,11 +1,12 @@
 include .env
 app_name=app #アプリケーション名(デフォルトでapp)
 
+#使い方 make django-app app_name=api → python manage.py startapp apiが実行される。
 django-app:
-	docker-compose run --rm backend sh -c "cd $(BACK_PROJECT_NAME) && python manage.py startapp $(app_name)"
+	docker-compose run --rm backend sh -c "cd $(BACK_PROJECT_NAME) && pipenv run django-app $(app_name)"
 
 django-shell:
-	docker-compose exec backend sh -c "cd $(BACK_PROJECT_NAME) && python manage.py shell_plus"
+	docker-compose exec backend sh -c "cd $(BACK_PROJECT_NAME) && pipenv run django-shell"
 
 # front_node_modulesボリュームにnodeのモジュールをインストールする。
 npm-install:
@@ -17,6 +18,7 @@ pipenv-install:
 
 build:
 	docker-compose build --no-cache
+	@make pipenv-install
 	@make npm-install
 
 db-login:

@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "<4,>=3"
+ipython = "*"
+django-extensions = "*"
+django-cors-headers = "*"
+tzdata = "*"
+mysqlclient = "*"
+django-environ = "*"
+djangorestframework-simplejwt = "*"
+djoser = "*"
+dj-static = "*"
+Django = "<4,>=3"
+PyJWT = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+server = "python manage.py runserver 0.0.0.0:8000"
+test = "python manage.py test"
+django-shell = "python manage.py shell_plus"
+django-app = "python manage.py startapp"

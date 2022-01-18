@@ -39,7 +39,8 @@ services:
     volumes:
       - ./backend:$WORK_DIR
       - back_py_modules:/root/.local/share
-    command: sh -c "cd $BACK_PROJECT_NAME && pipenv shell && python manage.py runserver 0:8000"
+    command: sh -c "cd $BACK_PROJECT_NAME && pipenv run server"
+    
     ports:
       - "$BACK_PORT:8000"
     depends_on:
