@@ -36,12 +36,10 @@ services:
       DB_PASS: $DB_PASS
       DB_ROOT_PASS: $DB_ROOT_PASS
       FRONT_PORT: $FRONT_PORT
-      # MODULE_PASS: ${docker-compose exec backend sh -c "cd $BACK_PROJECT_NAME && pipenv --venv"}
     volumes:
       - ./backend:$WORK_DIR
-      # - back_python_modules:
-    # command: sh -c "cd $BACK_PROJECT_NAME && pipenv shell && python manage.py runserver 0:8000"
-    command: sh -c "cd $BACK_PROJECT_NAME && python manage.py runserver 0:8000"
+      - back_py_modules:/root/.local/share
+    command: sh -c "cd $BACK_PROJECT_NAME && pipenv shell && python manage.py runserver 0:8000"
     ports:
       - "$BACK_PORT:8000"
     depends_on:
@@ -70,3 +68,4 @@ services:
 volumes:
   db_store:
   front_node_modules:
+  back_py_modules:
